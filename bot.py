@@ -1,4 +1,4 @@
-﻿import discord
+import discord
 from discord.ext import commands
 import os
 import tempfile
@@ -14,7 +14,7 @@ intents.message_content = True
 bot = commands.Bot(command_prefix="!", intents=intents)
 
 BASE_DIR = Path(__file__).resolve().parent
-DEOBF_SCRIPT = BASE_DIR / "deobf" / "deob.py"
+DEOBF_SCRIPT = BASE_DIR / "deob.py"
 
 @bot.event
 async def on_ready():
@@ -49,8 +49,7 @@ async def deobfuscate(ctx):
 
     with tempfile.TemporaryDirectory() as temp_dir:
         input_file = Path(temp_dir) / file_name
-        output_dir = Path(temp_dir) / "output"
-        output_file = output_dir / file_name
+        output_file = Path(temp_dir) / "output" / file_name
 
         input_file.write_text(script_content, encoding="utf-8")
 
