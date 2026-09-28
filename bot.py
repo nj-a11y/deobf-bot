@@ -14,7 +14,14 @@ intents.message_content = True
 bot = commands.Bot(command_prefix="!", intents=intents)
 
 BASE_DIR = Path(__file__).resolve().parent
-DEOBF_SCRIPT = BASE_DIR / "deob.py"
+
+# Automatically locate deob.py anywhere
+if (BASE_DIR / "deob.py").exists():
+    DEOBF_SCRIPT = BASE_DIR / "deob.py"
+elif (BASE_DIR / "deobf" / "deob.py").exists():
+    DEOBF_SCRIPT = BASE_DIR / "deobf" / "deob.py"
+else:
+    DEOBF_SCRIPT = BASE_DIR / "deob.py"
 
 @bot.event
 async def on_ready():
